@@ -1,30 +1,71 @@
-let modo = "login";
+const toggle = document.querySelector("#trocar");
+const titulo = document.querySelector("#titulo");
+const sub = document.querySelector("#sub");
+const campoNome = document.querySelector("#campo-nome");
+const campoConfirmar = document.querySelector("#campo-confirmar");
+const botaoSubmit = document.querySelector("#btn-submit");
+const form = document.querySelector("#form");
 
-const titulo = document.getElementById("titulo");
-const sub = document.getElementById("sub");
-const trocar = document.getElementById("trocar");
-const campoNome = document.getElementById("campo-nome");
-const campoConfirmar = document.getElementById("campo-confirmar");
-const btn = document.getElementById("btn-submit");
+let modoCadastro = false;
 
-trocar.onclick = (e) => {
+toggle.addEventListener("click", (e) => {
   e.preventDefault();
-  
-  if (modo === "login") {
-    modo = "cadastro";
-    titulo.textContent = "Acesso ao Sistema";
-    sub.textContent = "Cadastre-se para aproveitar todos os recursos do sistema.";
+  modoCadastro = !modoCadastro;
+
+  if (modoCadastro) {
+    titulo.innerText = "Criar Conta";
+    sub.innerText = "Preencha os dados para se cadastrar";
     campoNome.classList.remove("hidden");
     campoConfirmar.classList.remove("hidden");
-    btn.textContent = "Cadastrar";
-    trocar.textContent = "Entrar";
+    botaoSubmit.innerText = "Cadastrar";
+    toggle.innerText = "Fazer login";
   } else {
-    modo = "login";
-    titulo.textContent = "Acesso ao Sistema";
-    sub.textContent = "Entre com seu e-mail e senha para acessar o painel";
+    titulo.innerText = "Acesso ao Sistema";
+    sub.innerText = "Entre com seu e-mail e senha para acessar o painel";
     campoNome.classList.add("hidden");
     campoConfirmar.classList.add("hidden");
-    btn.textContent = "Entrar";
-    trocar.textContent = "Cadastre-se";
+    botaoSubmit.innerText = "Entrar";
+    toggle.innerText = "Cadastre-se";
   }
-};
+});
+
+
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const nome = form.querySelector("#campo-nome input")?.value;
+  const email = form.querySelector("input[type='email']").value;
+  const senha = form.querySelector("input[type='password']").value;
+  const confirmar = campoConfirmar.querySelector("input")?.value;
+
+
+  if (modoCadastro) {
+    if (senha !== confirmar) {
+      alert("As senhas não coincidem!");
+      return;
+    }
+
+    const usuario = { nome, email, senha };
+    localStorage.setItem("usuario", JSON.stringify(usuario));
+
+    alert("Cadastro realizado com sucesso!");
+    window.location.href = "dashboard.html";
+    return;
+  }
+
+  // LOGIN
+  const salvo = JSON.parse(localStorage.getItem("usuario"));
+
+  if (!salvo) {
+    alert("Nenhum usuário cadastrado!");
+    return;
+  }
+
+  if (salvo.email === email && salvo.senha === senha) {
+    alert("Login efetuado!");
+    window.location.href = "dashboard.html";
+  } else {
+    alert("Credenciais inválidas!");
+  }
+});
