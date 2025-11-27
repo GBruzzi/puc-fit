@@ -50,7 +50,7 @@ form.addEventListener("submit", (e) => {
     localStorage.setItem("usuario", JSON.stringify(usuario));
 
     alert("Cadastro realizado com sucesso!");
-    window.location.href = "dashboard.html";
+    window.location.href = "index.html";
     return;
   }
 
