@@ -244,6 +244,58 @@
     if (usuario) {
       document.querySelector("#nome-usuario").innerText = "Olá, " + usuario.nome;
     }
+
+    function gerarRelatorio() {
+      const membrosAtivos = 1248;
+      const entradasHoje = 312;
+      const receitaMes = "R$ 76.200";
+
+      const usuarios = [
+        { nome: "Ana Silva", plano: "Mensal", validade: "2025-11-12" },
+        { nome: "Bruno Costa", plano: "Semestral", validade: "2026-03-05" },
+        { nome: "Carla Souza", plano: "-", validade: "-" }
+      ];
+
+      const acessos = [
+        { nome: "Bruno C.", hora: "08:12" },
+        { nome: "Ana S.", hora: "08:20" },
+        { nome: "Carla S.", hora: "08:45" }
+      ];
+
+      const relatorio = `
+📊 RELATÓRIO SEMESTRAL (SIMULADO)
+
+• Membros ativos: ${membrosAtivos}
+• Entradas hoje: ${entradasHoje}
+• Receita estimada no mês: ${receitaMes}
+
+👥 Usuários:
+${usuarios.map(u => ` - ${u.nome} | Plano: ${u.plano} | Validade: ${u.validade}`).join("\n")}
+
+🕒 Últimos acessos:
+${acessos.map(a => ` - ${a.nome} às ${a.hora}`).join("\n")}
+    `;
+
+      alert(relatorio);
+    }
+
+    function exportarRelatorio() {
+      const fakeContent = "Relatório exportado com sucesso! (Simulado no MVP)";
+
+      const blob = new Blob([fakeContent], { type: "text/plain" });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "relatorio.txt";
+      a.click();
+
+      URL.revokeObjectURL(url);
+    }
+
+    // liga os links "Gerar" e "Exportar"
+    document.querySelector('a[href="#"]:nth-of-type(2)').addEventListener("click", gerarRelatorio);
+    document.querySelector('a[href="#"]:nth-of-type(1)').addEventListener("click", exportarRelatorio);
   </script>
 
 </body>
