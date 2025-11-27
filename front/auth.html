@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PUC Fit — Login / Cadastro</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script defer src="assets/js/auth.js"></script>
+</head>
+<body class="auth">
+  <div class="auth-card">
+    <h1 id="titulo">Acesso ao Sistema</h1>
+    <p id="sub" class="auth-subtitle">Entre com seu e-mail e senha para acessar o painel</p>
+
+    <form id="form">
+      <div id="campo-nome" class="hidden">
+        <input type="text" placeholder="Nome completo">
+      </div>
+
+      <input type="email" placeholder="E-mail">
+      <input type="password" placeholder="Senha">
+
+      <div id="campo-confirmar" class="hidden">
+        <input type="password" placeholder="Confirmar senha">
+      </div>
+
+      <button class="btn btn-primary btn-full" type="submit" id="btn-submit">
+        Entrar
+      </button>
+    </form>
+
+    <p class="auth-toggle">
+      Não tem conta? <a href="#" id="trocar">Cadastre-se</a>
+    </p>
+
+    <a href="index.html" class="back-link">← Voltar para a tela inicial</a>
+  </div>
+</body>
+</html>

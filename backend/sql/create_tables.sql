@@ -1,0 +1,32 @@
+CREATE TABLE Plano (
+    id SERIAL PRIMARY KEY,
+    tipo VARCHAR(50) NOT NULL,
+    valor NUMERIC(10,2) NOT NULL,
+    dataInicio DATE NOT NULL,
+    dataFim DATE NOT NULL,
+    descontoAplicado NUMERIC(5,2) DEFAULT 0
+);
+
+CREATE TABLE Usuario (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    cpf VARCHAR(11) UNIQUE NOT NULL,
+    matricula VARCHAR(20) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    statusAtleta BOOLEAN DEFAULT FALSE,
+    plano_id INT REFERENCES Plano(id)
+);
+
+CREATE TABLE ControleAcesso (
+    id SERIAL PRIMARY KEY,
+    usuario_id INT REFERENCES Usuario(id) ON DELETE CASCADE,
+    dataHora TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE Mensagem (
+    id SERIAL PRIMARY KEY,
+    usuario_id INT REFERENCES Usuario(id) ON DELETE CASCADE,
+    tipoProblema VARCHAR(50) NOT NULL,
+    descricao TEXT NOT NULL,
+    dataEnvio TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

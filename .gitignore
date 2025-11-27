@@ -1,0 +1,69 @@
+# -------------------------
+# Node.js / Backend
+# -------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+.pnpm-store/
+
+# Logs
+logs/
+*.log
+*.tmp
+*.temp
+*.pid
+*.seed
+*.pid.lock
+
+# Environment variables
+.env
+.env.* 
+*.local
+
+# Build / Output
+dist/
+build/
+out/
+coverage/
+.cache/
+.temp/
+
+# PM2 Logs
+.pids
+*.pid
+*.pid.lock
+
+# -------------------------
+# Front-end (HTML/CSS/JS)
+# -------------------------
+
+# Editor / OS Junk
+.DS_Store
+Thumbs.db
+
+# Vite / Webpack / Parcel / etc.
+.vite/
+.cache/
+.parcel-cache/
+webpack-stats.json
+
+# Browsersync / Live Server
+.browsersync/
+
+# -------------------------
+# IDE / Editor configs
+# -------------------------
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# -------------------------
+# System Files
+# -------------------------
+*.swp
+*.swo
+*~
